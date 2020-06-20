@@ -8,18 +8,19 @@
 
 ;; juxt returns the results of its functions in a vector
 
-
-supplied key is really a keyfn
-
 (def date-formatter (f/formatter "MM/dd/YYYY"))
+
+(defn date-util [date]
+  "takes date and returns a DateTime instance"
+  (f/parse date-formatter date))
+
+(defn sort-dob [data]
+  "sort by dob ascending"
+  (sort-by #(date-util (:dob %)) data))
 
 (defn sort-gender-last-name [data]
   "sort by gender (females before males), last name ascending"
   (sort-by (juxt :gender :last-name) data))
-
-(defn sort-dob [data]
-  "sort by dob ascending"
-  (sort-by #(f/parse date-formatter (:dob %)) data))
 
 (defn sort-last-name-desc [data]
   "sort by last name, descending"

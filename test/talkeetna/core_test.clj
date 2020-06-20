@@ -14,13 +14,7 @@
       (is (= "smith" (select-name second)))
       (is (= "jefferson" (select-name last))))))
 
-(deftest sort-dates
-  (testing "that dates of birth are correctly sorted by their actual time - not just based on the string representation"
-    (let [dates       '({:dob "10/18/1989"} {:dob "03/12/1989"} {:dob "02/08/1977"})
-          select-date (select-entity dates sort-dob :dob)]
-      (is (= "02/08/1977" (select-date first)))
-      (is (= "03/12/1989" (select-date second)))
-      (is (= "10/18/1989" (select-date last))))))
+
 
 
 
