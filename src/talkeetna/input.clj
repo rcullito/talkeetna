@@ -34,10 +34,3 @@
   (-> filename
      slurp
      s/split-lines))
-
-(defn parse-file [filename delimiter]
-  "parse the file into a seq of maps containing individual fields"
-  (->> (file->vector-strings filename)
-       (map (partial split-record delimiter))
-       (map trim-record)
-       (map namevec->map)))

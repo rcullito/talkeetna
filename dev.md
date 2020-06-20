@@ -6,4 +6,8 @@ Helpful notes for working with the repo
 
 `C-c C-t t` cider run test at point
 
+`C-c C-t n` cider run tests in current namespace
+
 `C-c C-p` evaluate form and send result to its own buffer
+
+

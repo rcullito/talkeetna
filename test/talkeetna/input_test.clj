@@ -51,3 +51,10 @@
     (is (not= i/comma-delimiter (i/select-delimiter "cats.ssv")))
     (is (= i/space-delimiter (i/select-delimiter "cats.ssv")))
     (is (= i/pipe-delimiter (i/select-delimiter "frogs.psv")))))
+
+
+(deftest read-file-as-intended
+  (testing "that we can successfully read from disk into a vector of strings"
+    (let [list-of-people (i/file->vector-of-strings "people.csv")]
+      (is true? (list? list-of-people))
+      (is (= (count list-of-people) 5)))))

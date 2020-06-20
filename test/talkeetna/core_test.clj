@@ -4,12 +4,7 @@
             [talkeetna.input :refer :all]))
 
 
-(deftest file-reader
-  (testing "that we can successfully read from disk and read into a list"
-    (let [list-of-people (parse-file "people.csv" comma-delimiter)]
-      (is true? (list? list-of-people))
-      ;; make sure there are some valid records in each file
-      (is (> (count list-of-people) 3)))))
+
 
 
 

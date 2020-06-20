@@ -18,6 +18,16 @@
   "sort by last name, descending"
   (reverse (sort-by :last-name data)))
 
+;; TODO this is really about combining input
+;; so it feels like it belongs here rather than with the purer
+;; fns of input.clj
+(defn parse-file [filename delimiter]
+  "parse the file into a seq of maps containing individual fields"
+  (->> (file->vector-strings filename)
+       (map (partial split-record delimiter))
+       (map trim-record)
+       (map namevec->map)))
+
 (defn step-1 [filename]
   "putting together all of the above to satisfy requirements for step 1 of the exercise"
   ;; TODO maybe these first two lines should be handled by input.clj
