@@ -1,7 +1,8 @@
 (ns talkeetna.core
   (:require [clj-time.core :as t]
             [clj-time.format :as f]
-            [clojure.pprint]))
+            [clojure.pprint]
+            [talkeetna.input :as i]))
 
 (def custom-formatter (f/formatter "MM/dd/YYYY"))
 

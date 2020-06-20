@@ -13,7 +13,7 @@
     (cond
       (file-ends? "csv") comma-delimiter
       (file-ends? "psv") pipe-delimiter
-      (file-ends? "ssv") space-delimiter)))
+      :else space-delimiter)))
 
 (defn split-record [delimiter record]
   "split the record into its individual components"
