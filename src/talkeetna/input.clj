@@ -15,9 +15,9 @@
       (file-ends? "psv") pipe-delimiter
       (file-ends? "ssv") space-delimiter)))
 
-(defn split-person [delimiter person]
-  "split the person string into its individual components"
-  (s/split person delimiter))
+(defn split-record [delimiter record]
+  "split the record into its individual components"
+  (s/split record delimiter))
 
 (defn trim-person [delimited-person]
   "trims whitespace from the previously delimited record"
@@ -36,8 +36,6 @@
   (-> filename
     slurp
     s/split-lines
-    (->> (map (partial split-person delimiter))
+    (->> (map (partial split-record delimiter))
          (map trim-person)
          (map namevec->map))))
-
-(split-person #"," "Murphy, Colin, Yellow")

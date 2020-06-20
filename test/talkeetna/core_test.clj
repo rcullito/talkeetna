@@ -9,9 +9,9 @@
     (let [comma-person-string "Murphy, Colin, Male, Yellow, 10/18/1989"
           space-person-string "Balayan Levon Male Orange 08/12/1985"
           pipe-person-string  "Ericson |  Berrit |  Female |  Black |  04/14/1987"
-          comma-result        (split-person comma-delimiter comma-person-string)
-          space-result        (split-person space-delimiter space-person-string)
-          pipe-result         (split-person pipe-delimiter pipe-person-string)]
+          comma-result        (split-record comma-delimiter comma-person-string)
+          space-result        (split-record space-delimiter space-person-string)
+          pipe-result         (split-record pipe-delimiter pipe-person-string)]
       (is (true? (vector? comma-result)))
       (is (true? (vector? space-result)))
       (is (true? (vector? pipe-result)))

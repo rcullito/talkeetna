@@ -22,7 +22,7 @@
   (-> (content->delimiter person)
       ;; TODO we should not have to do all of these here in the handler
       ;; this should delegate to core
-      (i/split-person person)
+      (i/split-record person)
       i/trim-person
       i/namevec->map
       (->> (swap! posted-records conj))))
