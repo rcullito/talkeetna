@@ -23,16 +23,16 @@
 ;; fns of input.clj
 (defn parse-file [filename delimiter]
   "parse the file into a seq of maps containing individual fields"
-  (->> (file->vector-strings filename)
-       (map (partial split-record delimiter))
-       (map trim-record)
-       (map namevec->map)))
+  (->> (i/file->vector-of-strings filename)
+       (map (partial i/split-record delimiter))
+       (map i/trim-record)
+       (map i/namevec->map)))
 
 (defn step-1 [filename]
   "putting together all of the above to satisfy requirements for step 1 of the exercise"
   ;; TODO maybe these first two lines should be handled by input.clj
   (let [delimiter            (i/select-delimiter filename)
-        sortable-data        (i/parse-file filename delimiter)
+        sortable-data        (parse-file filename delimiter)
         gender-last-name     (sort-gender-last-name sortable-data)
         birth-date-ascending (sort-dob sortable-data)
         last-name-descending  (sort-last-name-desc sortable-data)]
