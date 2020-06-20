@@ -1,3 +1,6 @@
+(ns talkeetna.input
+  (:require [clojure.string :as s]))
+
 (def space-delimiter  #" ")
 (def comma-delimiter  #",")
 (def pipe-delimiter  #"\|\s")
