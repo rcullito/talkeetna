@@ -1,9 +1,9 @@
-(ns gr.handler-test
+(ns talkeetna.handler-test
   (:require [clojure.test :refer :all]
-            [gr.handler :refer :all]
+            [talkeetna.handler :refer :all]
             [ring.mock.request :as mock]
             [cheshire.core :as cheshire]
-            [gr.core :as core]))
+            [talkeetna.input :as i]))
 ;; there is a bit of additonal logic in `gr.handler` specific to the routes
 ;; so this file consists of both traditional unit tests as well as testing of the
 ;; handler itself. it seemed best to keep tests correlated to namespaces
@@ -12,9 +12,9 @@
     (let [stein   "Stein, David, Male, Blue, 02/08/1987"
           ariadne "Delius Ariadne Female Blue 12/03/1986"
           cobb    "Cobb| Dominic| Male| Blue| 04/16/1975"]
-      (is (= core/comma-delimiter (content->delimiter stein)))
-      (is (= core/space-delimiter (content->delimiter ariadne)))
-      (is (= core/pipe-delimiter (content->delimiter cobb))))))
+      (is (= i/comma-delimiter (content->delimiter stein)))
+      (is (= i/space-delimiter (content->delimiter ariadne)))
+      (is (= i/pipe-delimiter (content->delimiter cobb))))))
 
 (deftest test-app
   (testing "get records"

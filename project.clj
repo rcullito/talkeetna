@@ -10,7 +10,7 @@
                  [ring/ring-mock "0.3.2"]]
   :plugins [[lein-cloverage "1.0.10"]
             [lein-ring "0.7.1"]]
-  :ring {:handler gr.handler/app}
-  :main gr.core
+  :ring {:handler talkeetna.handler/app}
+  :main talkeetna.core
   :profiles {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
                                   [ring/ring-mock "0.3.0"]]}})

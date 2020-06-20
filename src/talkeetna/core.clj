@@ -1,4 +1,4 @@
-(ns gr.core
+(ns talkeetna.core
   (:require [clj-time.core :as t]
             [talkeetna.input :as i]
             [clj-time.format :as f]

@@ -1,6 +1,7 @@
-(ns gr.core-test
+(ns talkeetna.core-test
   (:require [clojure.test :refer :all]
-            [gr.core :refer :all]))
+            [talkeetna.core :refer :all]
+            [talkeetna.input :refer :all]))
 
 (deftest splitting
   (testing "that splitting on delimeter works as expected"
