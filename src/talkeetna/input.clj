@@ -5,6 +5,20 @@
 (def comma-delimiter  #",")
 (def pipe-delimiter  #"\|\s")
 
+(defn split-record [delimiter record]
+  "split the record into its individual components"
+  (s/split record delimiter))
+
+(defn trim-record [delimited-record]
+  "trims whitespace from the previously delimited record"
+  (map s/trim delimited-record))
+
+(defn namevec->map [namevec]
+  "build a vector of person attributes into a map"
+  (apply sorted-map
+         (interleave
+          [:last-name :first-name :gender :color :dob]
+          namevec)))
 
 (defn select-delimiter [filename]
   "choose correct delimiter for file type"
@@ -15,27 +29,15 @@
       (file-ends? "psv") pipe-delimiter
       :else space-delimiter)))
 
-(defn split-record [delimiter record]
-  "split the record into its individual components"
-  (s/split record delimiter))
-
-(defn trim-record [delimited-record]
-  "trims whitespace from the previously delimited record"
-  (map s/trim delimited-record))
-
-;; TODO this function name is counterintuitive
-(defn namevec->map [namevec]
-  "build a vector of person attributes into a map"
-  (apply sorted-map
-         (interleave
-          [:last-name :first-name :gender :color :dob]
-          namevec)))
+(defn file->vector-of-strings [filename]
+  "reads a file from disk and returns a vector with each row as its own string"
+  (-> filename
+     slurp
+     s/split-lines))
 
 (defn parse-file [filename delimiter]
-  "parse the file into a vector of strings for each person"
-  (-> filename
-    slurp
-    s/split-lines
-    (->> (map (partial split-record delimiter))
-         (map trim-record)
-         (map namevec->map))))
+  "parse the file into a seq of maps containing individual fields"
+  (->> (file->vector-strings filename)
+       (map (partial split-record delimiter))
+       (map trim-record)
+       (map namevec->map)))
