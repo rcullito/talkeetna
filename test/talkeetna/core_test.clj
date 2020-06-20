@@ -3,6 +3,7 @@
             [talkeetna.core :refer :all]
             [talkeetna.input :refer :all]))
 
+
 (deftest splitting
   (testing "that splitting on delimeter works as expected"
     (let [comma-person-string "Murphy, Colin, Male, Yellow, 10/18/1989"
@@ -17,6 +18,7 @@
       (is (= 5 (count comma-result)))
       (is (= 5 (count space-result)))
       (is (= 5 (count pipe-result))))))
+
 
 (deftest trimming
   (testing "that trimming whitespace is effective")

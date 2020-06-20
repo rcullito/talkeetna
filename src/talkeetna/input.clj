@@ -23,7 +23,7 @@
   "trims whitespace from the previously delimited record"
   (map s/trim delimited-person))
 
-;; this function name is counterintuitive
+;; TODO this function name is counterintuitive
 (defn namevec->map [namevec]
   "build a vector of person attributes into a map"
   (apply sorted-map
@@ -40,3 +40,4 @@
          (map trim-person)
          (map namevec->map))))
 
+(split-person #"," "Murphy, Colin, Yellow")
