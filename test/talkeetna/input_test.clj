@@ -3,11 +3,11 @@
             [talkeetna.input :as i]))
 
 
-;; TODO run this before moving on
 (deftest split-comma
-  (testing "that splitting a row by comma produces a..."
+  (testing "that splitting an input string by a comma regex produces a vector of the expected length"
     (let [result (i/split-person i/comma-delimiter "Murphy, Colin, Male")]
-      (is (= result ["Murphy" "Colin" "Male"])))))
+      (is (true? (vector? result)))
+      (is (= 3 (count result))))))
 
 
 
