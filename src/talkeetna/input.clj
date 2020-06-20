@@ -19,9 +19,9 @@
   "split the record into its individual components"
   (s/split record delimiter))
 
-(defn trim-person [delimited-person]
+(defn trim-record [delimited-record]
   "trims whitespace from the previously delimited record"
-  (map s/trim delimited-person))
+  (map s/trim delimited-record))
 
 ;; TODO this function name is counterintuitive
 (defn namevec->map [namevec]
@@ -37,5 +37,5 @@
     slurp
     s/split-lines
     (->> (map (partial split-record delimiter))
-         (map trim-person)
+         (map trim-record)
          (map namevec->map))))

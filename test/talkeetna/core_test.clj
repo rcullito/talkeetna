@@ -24,7 +24,7 @@
   (testing "that trimming whitespace is effective")
   (let [whitespace        #"\s"
         whitespace-person ["Ericson  " " Berrit" " Female" "  Black" "04/14/1987 "]
-        trimmed-person    (trim-person whitespace-person)]
+        trimmed-person    (trim-record whitespace-person)]
     (is true? (every? nil? (map #(re-find #"\s" %) trimmed-person)))))
 
 (deftest file-reader

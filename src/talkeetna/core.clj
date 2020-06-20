@@ -21,14 +21,14 @@
 (defn step-1 [filename]
   "putting together all of the above to satisfy requirements for step 1 of the exercise"
   ;; TODO maybe these first two lines should be handled by input.clj
-  (let [delimiter       (i/select-delimiter filename)
-        sortable-data   (i/parse-file filename delimiter)
-        output-1        (sort-gender-last-name sortable-data)
-        output-2        (sort-dob sortable-data)
-        output-3        (sort-last-name-desc sortable-data)]
-    {:output-1 output-1
-     :output-2 output-2
-     :output-3 output-3}))
+  (let [delimiter            (i/select-delimiter filename)
+        sortable-data        (i/parse-file filename delimiter)
+        gender-last-name     (sort-gender-last-name sortable-data)
+        birth-date-ascending (sort-dob sortable-data)
+        last-name-descending  (sort-last-name-desc sortable-data)]
+    {:gender-last-name     gender-last-name
+     :birth-date-ascending birth-date-ascending
+     :last-name-descending last-name-descending}))
 
 (defn -main [filename]
   "entry point for cli tool"

@@ -23,7 +23,7 @@
       ;; TODO we should not have to do all of these here in the handler
       ;; this should delegate to core
       (i/split-record person)
-      i/trim-person
+      i/trim-record
       i/namevec->map
       (->> (swap! posted-records conj))))
 ;; assemble all records on file to be used by the GET routes
