@@ -1,21 +1,6 @@
 (ns talkeetna.core-test
   (:require [clojure.test :refer :all]
-            [talkeetna.core :refer :all]
-            [talkeetna.input :refer :all]))
-
-
-(deftest sort-multipe-criteria
-  (testing "that sorting on multiple criteria works as expected"
-    (let [people      '({:gender "male" :last-name "jefferson"}
-                        {:gender "female" :last-name "smith"}
-                        {:gender "female" :last-name "adams"})
-          select-name (select-entity people sort-gender-last-name :last-name)]
-      (is (= "adams" (select-name first)))
-      (is (= "smith" (select-name second)))
-      (is (= "jefferson" (select-name last))))))
-
-
-
+            [talkeetna.core :refer :all]))
 
 
 (deftest entire-pipeline

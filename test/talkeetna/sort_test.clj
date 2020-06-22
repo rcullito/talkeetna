@@ -27,5 +27,11 @@
                          first
                          :last-name))))))
 
-;; TODO bring multiple criteria test over from core_test
-;; also rethink individual test names to make sure they are sane
+(deftest sort-multipe-criteria
+  (testing "that sorting on multiple criteria works as expected"
+    (let [people        '({:gender "male" :last-name "jefferson"}
+                          {:gender "female" :last-name "smith"}
+                          {:gender "female" :last-name "adams"})
+          sorted-people (so/sort-gender-last-name people)]
+      (is (= "adams" (:last-name (first sorted-people))))
+      (is (= "jefferson" (:last-name (last sorted-people)))))))

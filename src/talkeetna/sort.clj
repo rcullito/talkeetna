@@ -18,10 +18,12 @@
   "sort by dob ascending"
   (sort-by #(date-util (:dob %)) data))
 
+(defn sort-last-name-desc [data]
+  "sort by last name, descending"
+  (reverse (sort-by :last-name data)))
+
 (defn sort-gender-last-name [data]
   "sort by gender (females before males), last name ascending"
   (sort-by (juxt :gender :last-name) data))
 
-(defn sort-last-name-desc [data]
-  "sort by last name, descending"
-  (reverse (sort-by :last-name data)))
+
