@@ -4,12 +4,9 @@
             [talkeetna.sort :as so]
             [talkeetna.input :as i]))
 
-;; code in this namespace is generally used for running Step 1:
-;; the command line app
+;; code in this namespace is used for running Step 1: the command line app
 
-;; we basically do two things:
-;; 1. parse data
-;; 2. return according to desired sort order
+;; it relies on the two workhouses located in this directory: input.clj & sort.clj
 
 (defn parse-file [filename]
   "combine several helper fns from input.clj such that 

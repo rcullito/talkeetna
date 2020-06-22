@@ -7,6 +7,9 @@
             [talkeetna.input :as i]
             [talkeetna.handler-utils :as hu]))
 
+;; the web app, like the command line app, relies on input.clj and sort.clj
+;; minor differences between this namespace & core.clj stem from reading via HTTP versus from disk
+
 
 ;; records via POST route will be stored in memory
 ;; seed the 'working db' with values from our 3 delimited files
