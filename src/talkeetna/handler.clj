@@ -10,7 +10,10 @@
 
 ;; records via POST route will be stored in memory
 ;; seed the 'working db' with values from our 3 delimited files
-(def posted-records (hu/build-records '("people.csv" "people.ssv" "people.psv")))
+(def posted-records (-> '("people.csv" "people.ssv" "people.psv")
+                        hu/build-records
+                        ;; atom will give us some persistence from the POST to the subsequent GET requests
+                        atom))
 
 (defn process-posted-person [person]
   "perform similar set of operations as core's parse-file, though now just for one record and no file handling"
@@ -18,15 +21,15 @@
       (i/split-record person)
       i/trim-record
       i/namevec->map
-      (->> (conj posted-records))))
+      (->> (swap! posted-records conj))))
 
 (defroutes app-routes
   (GET "/records/gender" []
-       (so/sort-gender-last-name posted-records))
+       (so/sort-gender-last-name @posted-records))
   (GET "/records/birthdate" []
-       (so/sort-dob posted-records))
+       (so/sort-dob @posted-records))
   (GET "/records/name" []
-       (so/sort-last-name-desc posted-records))
+       (so/sort-last-name-desc @posted-records))
   (POST "/records" request
         (process-posted-person (get-in request [:body :person])))
   (route/not-found "Not Found"))
