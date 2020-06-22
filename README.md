@@ -57,6 +57,6 @@ an example request body for `POST /records` would be `{"person": "Aaberg, Chelse
 1. all strings read in from files are in a consistent case
 2. step 2 GET routes should have the same sort order as in step 1 (I wanted to clarify this because the instructions
    do not explicitly state secondary sorting criteria for gender or ascending vs.descending, etc...)
-3. file types have accurate file extensions
-
+3. files have accurate file extensions
+4. logging and/or additional middleware in a production app considered to be outside the scope of this excercise
 

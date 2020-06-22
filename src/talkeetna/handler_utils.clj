@@ -1,8 +1,7 @@
 (ns talkeetna.handler-utils
   (:require [talkeetna.core :as c]))
 
-;; utility fns that will help get the API ready to go
-
+;; utility fn that will help seed the API with data
 
 (defn build-records [filenames]
   "takes a list of filenames and builds and in-memory seq of the data"

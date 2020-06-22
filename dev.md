@@ -1,4 +1,4 @@
-Helpful notes for working with the repo
+Helpful notes for working with the repo. Mostly cider or elisp keybindings
 
 `C-c M-j` starts cider jack in clj
 
