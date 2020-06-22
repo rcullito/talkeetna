@@ -26,14 +26,6 @@
       i/trim-record
       i/namevec->map
       (->> (swap! posted-records conj))))
-;; assemble all records on file to be used by the GET routes
-;; since filename is not supplied in the request
-(def file-records
-  (reduce (fn [acc [f d]] (into acc (i/parse-file f d)))
-          (list)
-          [["people.csv" i/comma-delimiter]
-           ["people.ssv" i/space-delimiter]
-           ["people.psv" i/pipe-delimiter]]))
 
 (defn total-records []
   "HTTP GETS should return stored results on file and POSTed records held in memory. this should update on every request"
