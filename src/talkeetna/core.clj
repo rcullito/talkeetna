@@ -28,7 +28,10 @@
 
 (defn -main [filename]
   "entry point for cli tool"
-  (-> filename
-      parse-file
-      assemble-sorts
-      clojure.pprint/pprint))
+  (let [all-sort-orders (-> filename
+                          parse-file
+                          assemble-sorts)]
+    ;; when run from the cli, we want to print
+    ;; but also returning a result is useful for testing
+    (do (clojure.pprint/pprint all-sort-orders)
+        all-sort-orders)))

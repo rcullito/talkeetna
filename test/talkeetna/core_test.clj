@@ -2,9 +2,17 @@
   (:require [clojure.test :refer :all]
             [talkeetna.core :refer :all]))
 
-
 (deftest entire-pipeline
-  (testing "that step 1 of the requirements are met and that supplied filename results in 3 different views of output, all of which contain records"
-    (let [{:keys [:output-1 :output-2 :output-3]} (step-1 "people.csv")]
-      ;; make sure there are some valid records in each file
-      (is (true? (every? #(> (count %) 3) [output-1 output-2 output-3]))))))
+  (testing "that the cli portion of the app can read a file and output 3 sort orders"
+    (let [{:keys [:gender-last-name
+                  :birth-date-ascending
+                  :last-name-descending]} (-main "people.psv")]
+      (is (= "Claire" (-> gender-last-name
+                       first
+                       :first-name)))
+      (is (= "Andreea" (-> birth-date-ascending
+                       first
+                       :first-name)))
+      (is (= "Levon" (-> last-name-descending
+                       last
+                       :first-name))))))
