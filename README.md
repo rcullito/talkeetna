@@ -34,7 +34,7 @@ once it's started, the routes will be available at:
 
 ## about the codebase
 
-The `-main` function in `/src/core.clj` is a good starting point for examining the codebase. `-main` relies on two other functions: `parse-file` and `assemble-sorts`. Both of these are composed of helpers from input.clj & sort.clj, respectively.
+The `-main` function in `/src/core.clj` is a good starting point for examining the codebase. `-main` relies on two other functions: `parse-file` and `assemble-sorts`. Both of these are composed of helpers from `input.clj` & `sort.clj`, respectively.
 
 `handler.clj` drives the REST API, pulling from `input.clj` & `sort.clj` as needed. During refactoring, `handler_utils.clj` was created to build up some sample data for the api from the records already on the filesystem.
 
