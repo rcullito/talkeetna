@@ -1,35 +1,37 @@
 (ns talkeetna.input-test
   (:require [clojure.test :refer :all]
             [talkeetna.input :as i]))
-;; TODO reuse these throughout the rest of the tests
+
 (def piped-person "Gomez | Nicole | Female | Purple | 12/15/2000")
-(def unpiped-person "Stein, David, Male, Blue, 02/08/1987") 
+(def unpiped-person "Stein, David, Male, Blue, 02/08/1987")
+(def comma-person "Murphy, Colin, Male")
+(def space-person "culliton rob male green 09/18/1986")
 
 (deftest split-record-comma
   (testing "that splitting a record by a comma regex produces a vector of the expected length"
-    (let [result (i/split-record i/comma-delimiter "Murphy, Colin, Male")]
+    (let [result (i/split-record i/comma-delimiter comma-person)]
       (is (true? (vector? result)))
       (is (= 3 (count result))))))
 
 
 (deftest split-record-space
   (testing "that splitting a record by a space produces a vector of the expected length"
-    (let [result (i/split-record i/space-delimiter "Murphy Colin Male")]
+    (let [result (i/split-record i/space-delimiter space-person)]
       (is (true? (vector? result)))
-      (is (= 3 (count result))))))
+      (is (= 5 (count result))))))
 
 
 (deftest split-record-pipe
   (testing "that splitting a record with a pipe produces a vector of the expected length"
-    (let [result (i/split-record i/pipe-delimiter "Murphy | Colin | Male")]
+    (let [result (i/split-record i/pipe-delimiter piped-person)]
       (is (true? (vector? result)))
-      (is (= 3 (count result))))))
+      (is (= 5 (count result))))))
 
 
 (deftest use-correct-delimeter
   (testing "that using different delimiters on the same record can produce vectors of different lengths")
-  (let [record "Murphy | Colin | Male"
-        pipe-result (i/split-record i/pipe-delimiter record)
+  (let [record       piped-person
+        pipe-result  (i/split-record i/pipe-delimiter record)
         space-result (i/split-record i/space-delimiter record)]
     (is (> (count space-result) (count pipe-result)))))
 
@@ -56,7 +58,9 @@
 
 (deftest select-delimiter-input
   (testing "that the right delimiter is chosen for a given input"
-    ))
+    (is (= i/comma-delimiter (i/select-delimiter-from-input comma-person)))
+    (is (= i/pipe-delimiter (i/select-delimiter-from-input piped-person)))
+    (is (= i/space-delimiter (i/select-delimiter-from-input space-person)))))
 
 (deftest select-delimiter-filename
   (testing "that the right delimiter is chosen for a given file extension"

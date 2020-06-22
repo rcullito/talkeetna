@@ -24,7 +24,6 @@
   "search a given text string to see if it contains a delimiter"
   (re-find delimiter input))
 
-;; TODO WRITE TEST
 (defn select-delimiter-from-input [person]
   "examine the input and determine the delimiter"
   (let [person-contains? (partial input-contains? person)]
