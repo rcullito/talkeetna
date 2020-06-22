@@ -25,7 +25,7 @@
   (re-find delimiter input))
 
 ;; TODO WRITE TEST
-(defn select-delimieter-from-input [person]
+(defn select-delimiter-from-input [person]
   "examine the input and determine the delimiter"
   (let [person-contains? (partial input-contains? person)]
     (cond
