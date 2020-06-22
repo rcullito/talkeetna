@@ -34,9 +34,12 @@
   (GET "/records/name" []
        (so/sort-last-name-desc @posted-records))
   (POST "/records" request
-        (let [new-person (get-in request [:body :person])]
-          (when (process-posted-person new-person)
-            (str "Successfully posted: " new-person))))
+        (try
+          (let [new-person (get-in request [:body :person])]
+            (when (process-posted-person new-person)
+              (str "Successfully posted: " new-person)))
+          (catch Exception e
+            {:status 400 :body "Invalid request. Please supply data of the form {\"person\": \"Schumann, Robert, Male, Blue, 08/02/1863\"}"})))
   (route/not-found "Not Found"))
 
 (def app
