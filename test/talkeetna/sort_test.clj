@@ -18,7 +18,7 @@
                               :dob))))))
 
 (deftest sort-descending
-  (testing "that descending sort works"
+  (testing "that our descending sort using reverse works"
     (let [last-names        '({:last-name "Smith"}
                               {:last-name "Jones"}
                               {:last-name "Perler"})
