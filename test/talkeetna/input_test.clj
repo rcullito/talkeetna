@@ -47,10 +47,10 @@
 
 (deftest select-delimiter
   (testing "that the right delimiter is chosen for a given file extension"
-    (is (= i/comma-delimiter (i/select-delimiter "lions.csv")))
-    (is (not= i/comma-delimiter (i/select-delimiter "cats.ssv")))
-    (is (= i/space-delimiter (i/select-delimiter "cats.ssv")))
-    (is (= i/pipe-delimiter (i/select-delimiter "frogs.psv")))))
+    (is (= i/comma-delimiter (i/select-delimiter-from-filename "lions.csv")))
+    (is (not= i/comma-delimiter (i/select-delimiter-from-filename "cats.ssv")))
+    (is (= i/space-delimiter (i/select-delimiter-from-filename "cats.ssv")))
+    (is (= i/pipe-delimiter (i/select-delimiter-from-filename "frogs.psv")))))
 
 
 (deftest read-file-as-intended

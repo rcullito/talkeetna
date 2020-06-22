@@ -14,7 +14,7 @@
 (defn parse-file [filename]
   "combine several helper fns from input.clj such that 
    we take a file and return a sequence of correctly keyed maps"
-  (let [delimiter (i/select-delimiter filename)]
+  (let [delimiter (i/select-delimiter-from-filename filename)]
     (->> (i/file->vector-of-strings filename)
          (map (partial i/split-record delimiter))
          (map i/trim-record)
