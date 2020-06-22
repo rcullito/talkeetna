@@ -15,6 +15,8 @@ each file has a few records there already
 
 	lein test
 
+by design, it will also print the output from the cli portion of the app
+
 ## test coverage
 
 	lein cloverage
