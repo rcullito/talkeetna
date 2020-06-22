@@ -31,7 +31,9 @@
   (GET "/records/name" []
        (so/sort-last-name-desc @posted-records))
   (POST "/records" request
-        (process-posted-person (get-in request [:body :person])))
+        (let [new-person (get-in request [:body :person])]
+          (when (process-posted-person new-person)
+            (str "Successfully posted: " new-person))))
   (route/not-found "Not Found"))
 
 (def app
