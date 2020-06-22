@@ -6,14 +6,7 @@
             [talkeetna.core :as c]
             [talkeetna.input :as i]))
 
-(defn content->delimiter [person]
-  "examine the input and determine the delimiter"
-  (cond
-    ;; spaces may be present in pipe and comma delimited files
-    ;; so check for these first
-    (re-find i/pipe-delimiter person) i/pipe-delimiter
-    (re-find i/comma-delimiter person) i/comma-delimiter
-    :else i/space-delimiter))
+
 ;; records via POST route will be stored in memory
 (def posted-records (atom ()))
 

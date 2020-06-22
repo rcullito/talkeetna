@@ -20,8 +20,23 @@
           [:last-name :first-name :gender :color :dob]
           namevec)))
 
-(defn select-delimiter [filename]
-  "choose correct delimiter for file type"
+(defn input-contains? [input delimiter]
+  "search a given text string to see if it contains a delimiter"
+  (re-find delimiter input))
+
+;; TODO WRITE TEST
+(defn select-delimieter-from-input [person]
+  "examine the input and determine the delimiter"
+  (let [person-contains? (partial input-contains? person)]
+    (cond
+      ;; spaces will likely be present in pipe and comma delimited files
+      ;; so check for those other types first
+      (person-contains? comma-delimiter) comma-delimiter
+      (person-contains? pipe-delimiter)  pipe-delimiter
+      :else                              space-delimiter)))
+
+(defn select-delimiter-from-filename [filename]
+  "examine the file type and determine the delimeter"
   (let [file-ends? (partial s/ends-with? filename)]
     (cond
       (file-ends? "csv") comma-delimiter

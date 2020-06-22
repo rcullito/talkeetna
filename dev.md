@@ -11,3 +11,4 @@ Helpful notes for working with the repo
 `C-c C-p` evaluate form and send result to its own buffer
 
 
+`C-x C-e` general lisp function. you can always evaluate sexp at point without worrying about its wrapping expression. very useful for tests and other longer running forms

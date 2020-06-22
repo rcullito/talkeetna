@@ -45,7 +45,16 @@
     (let [person-attributes ["culliton" "rob" "male" "green" "09/18/1986"]]
       (is (true? (map? (i/namevec->map person-attributes)))))))
 
-(deftest select-delimiter
+(deftest input-contains?-utility
+  (testing "that this helper fn returns nil if the given delimiter is not in the input, and a result otherwise"
+    (let [piped-person        "Gomez | Nicole | Female | Purple | 12/15/2000"
+          unpiped-person      "Stein, David, Male, Blue, 02/08/1987"
+          result-with-pipe    (i/input-contains? piped-person i/pipe-delimiter)
+          result-without-pipe (i/input-contains? unpiped-person i/pipe-delimiter)]
+      (is (some? result-with-pipe))
+      (is (nil? result-without-pipe)))))
+
+(deftest select-delimiter-filename
   (testing "that the right delimiter is chosen for a given file extension"
     (is (= i/comma-delimiter (i/select-delimiter-from-filename "lions.csv")))
     (is (not= i/comma-delimiter (i/select-delimiter-from-filename "cats.ssv")))
