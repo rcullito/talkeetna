@@ -24,9 +24,9 @@
   "search a given text string to see if it contains a delimiter"
   (re-find delimiter input))
 
-(defn select-delimiter-from-input [person]
+(defn select-delimiter-from-input [input]
   "examine the input and determine the delimiter"
-  (let [person-contains? (partial input-contains? person)]
+  (let [person-contains? (partial input-contains? input)]
     (cond
       ;; spaces will likely be present in pipe and comma delimited files
       ;; so check for those other types first
