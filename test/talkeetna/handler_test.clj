@@ -6,13 +6,13 @@
             [talkeetna.input :as i]))
 
 (deftest test-app
-  (testing "post record"
+  (testing "post should accept data with a single key: 'person'"
     (let [post-data {:person "Aaberg, Chelsea, Female, Blue, 02/08/1987"}
           response (app (-> (mock/request :post "/records")
                             (mock/content-type "application/json")
                             (mock/body (cheshire/generate-string post-data))))]
       (is (= (:status response) 200))))
-  (testing "get records"
+  (testing "get should return multiple records from disk as well as any record that has been posted"
     (let [response (app (mock/request :get "/records/gender"))
           returned-data (cheshire/parse-string (:body response))]
       (is (= (:status response) 200))
